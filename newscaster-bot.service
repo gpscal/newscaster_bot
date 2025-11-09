@@ -1,0 +1,31 @@
+[Unit]
+Description=Newscaster Bot - News aggregation and analysis bot for Discord
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cali
+Group=cali
+WorkingDirectory=/home/cali/newscaster_bot
+Environment="PATH=/home/cali/newscaster_bot/venv/bin:/usr/local/bin:/usr/bin:/bin"
+
+# Use virtual environment Python
+ExecStart=/home/cali/newscaster_bot/venv/bin/python /home/cali/newscaster_bot/main.py --mode schedule
+
+# Restart policy
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=200
+StartLimitBurst=5
+
+# Logging
+StandardOutput=append:/home/cali/newscaster_bot/logs/bot.log
+StandardError=append:/home/cali/newscaster_bot/logs/bot-error.log
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

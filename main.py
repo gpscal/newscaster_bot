@@ -133,7 +133,7 @@ class NewscasterBot:
         
         # Schedule periodic updates (every 6 hours)
         while not self.discord_bot.bot.is_closed():
-            await asyncio.sleep(21600)  # 6 hours = 21600 seconds
+            await asyncio.sleep(3600)  # 6 hours = 21600 seconds - Update to 1 hour 3600
             await self.fetch_and_send_news()
     
     def run(self, mode='once'):
